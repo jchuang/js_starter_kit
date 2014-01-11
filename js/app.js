@@ -7,11 +7,19 @@ function getRandomInt( min, max ) {
 
 var number = getRandomInt( 0, max );
 
-$( document ).ready(function() {
+var submitGuess = function() {
+  userGuess = $( 'input' ).val();
+  $( 'input' ).val( '' );
+  console.log( userGuess );
+};
+
+$( document ).ready( function() {
   $( '#max' ).html( max );
-  $( '.guess' ).on( 'click', function() {
-    userGuess = $( 'input' ).val();
-    console.log( userGuess );
+  $( '.guess' ).on( 'click', submitGuess );
+  $( 'input' ).on( 'keypress', function( event ) {
+    if( event.keyCode == 13 ) {
+      $( '.guess' ).click();
+    }
   });
 });
 
