@@ -20,14 +20,21 @@ var submitGuess = function() {
   $( 'input' ).val( '' );
   numberGuess = convertGuess( userGuess );
 
-  if( numberGuess > max || !numberGuess ) {
-    console.log( 'not a valid guess!' );
-  } else {
-    console.log( 'valid guess, check against number' );
-  }
+  if ( numberGuess > max || !numberGuess ) {
+    $( '.alert' ).html( 'Sorry, that was not a valid guess.' );
 
-  allGuesses.push( userGuess );
-  console.log( 'allGuesses = ' + allGuesses );
+  } else {
+    allGuesses.push( userGuess );
+
+    if ( numberGuess > number ) {
+      $( '.history' ).append( '<p class="pastguess">' + numberGuess + ' is too high, please guess again.</p>' );
+    } else if ( numberGuess < number ) {
+      $( '.history' ).append( '<p class="pastguess">' + numberGuess + ' is too low, please guess again.</p>' );
+    } else {
+      $( '.history' ).append( '<p class="pastguess">Congratulations, ' + number + ' is correct!<br />You have guessed the number in ' +
+        allGuesses.length + ' guesses.</p>' );
+    }
+  }
 }
 
 $( document ).ready( function() {
