@@ -20,11 +20,12 @@ var submitGuess = function() {
   $( 'input' ).val( '' );
   numberGuess = convertGuess( userGuess );
 
-  if ( numberGuess > max || !numberGuess ) {
-    $( '.alert' ).html( 'Sorry, that was not a valid guess.' );
+  if ( numberGuess > max || numberGuess < 0 || !numberGuess ) {
+    $( '.alert' ).html( '<p>Oops! Please enter a number between 0 and ' + max + '.</p>' );
 
   } else {
     allGuesses.push( userGuess );
+    $( '.alert' ).html( 'Button' );
 
     if ( numberGuess > number ) {
       $( '.history' ).append( '<p class="pastguess">' + numberGuess + ' is too high, please guess again.</p>' );
