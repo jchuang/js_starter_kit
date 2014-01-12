@@ -21,11 +21,12 @@ var submitGuess = function() {
   numberGuess = convertGuess( userGuess );
 
   if ( numberGuess > max || numberGuess < 0 || !numberGuess ) {
+    $( '.alert' ).show();
     $( '.alert' ).html( '<p>Oops! Please enter a number between 0 and ' + max + '.</p>' );
 
   } else {
     allGuesses.push( userGuess );
-    $( '.alert' ).html( 'Button' );
+    $( '.alert' ).hide();
 
     if ( numberGuess > number ) {
       $( '.history' ).append( '<p class="pastguess">' + numberGuess + ' is too high, please guess again.</p>' );
@@ -34,12 +35,15 @@ var submitGuess = function() {
     } else {
       $( '.history' ).append( '<p class="pastguess">Congratulations, ' + number + ' is correct!<br />You have guessed the number in ' +
         allGuesses.length + ' guesses.</p>' );
+      $( '.success' ).show();
     }
   }
 }
 
 $( document ).ready( function() {
   $( '#max' ).html( max );
+  $( '.alert' ).hide();
+  $( '.success' ).hide();
 
   $( '.guess' ).on( 'click', submitGuess );
   $( 'input' ).on( 'keypress', function( event ) {
