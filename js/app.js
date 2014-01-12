@@ -36,6 +36,8 @@ var submitGuess = function() {
       $( '.history' ).append( '<p class="pastguess">Congratulations, ' + number + ' is correct!<br />You have guessed the number in ' +
         allGuesses.length + ' guesses.</p>' );
       $( '.success' ).show();
+      $( '.guess' ).hide();
+      $( 'input' ).prop( 'disabled', true );
     }
   }
 }
@@ -50,5 +52,8 @@ $( document ).ready( function() {
     if( event.keyCode == 13 ) {
       $( '.guess' ).click();
     }
+  })
+  $( '.success' ).on( 'click', function() {
+    location.reload();
   })
 })
