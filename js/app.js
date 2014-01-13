@@ -55,5 +55,6 @@ $( document ).ready( function() {
   })
   $( '.success' ).on( 'click', function() {
     location.reload();
+    $( 'input' ).prop( 'disabled', false );
   })
 })
